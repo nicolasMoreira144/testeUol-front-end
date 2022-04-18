@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Incidente } from './incidente';
+import { Incidente } from './incidente/incidente';
+import { IncidenteService } from './incidente/incidente.service';
 
 
 @Component({
@@ -10,12 +10,12 @@ import { Incidente } from './incidente';
 })
 export class AppComponent {
   incidentes : Incidente[] = [];
-  
-  constructor(private httpClient: HttpClient) { 
-      httpClient.get<Incidente[]>('http://localhost:8080/im-day/incidentes')
+
+  constructor(private incidenteService: IncidenteService) {
+
+      incidenteService.getIncidentes()
       .subscribe(incidente => this.incidentes = incidente);
-      
     }
-    
-  
+
+
 }
